@@ -1,0 +1,44 @@
+
+.payment {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: top;
+    justify-content: space-around;
+}
+
+.payment form {
+    max-width: 500px;
+    min-width: 290px;
+    width: 100%;
+    margin: 15px 30px;
+}
+
+.payment form label {
+    font-weight: bold;
+}
+.payment form .row {
+    width: 100%;
+    margin: 15px 0;
+}
+
+.payment form input[type=text], input[type=number], textarea {
+    width: 100%;
+    min-height: 40px;
+    padding: 0 5px;
+}
+
+.payment form button {
+    width: 200px;
+    height: 40px;
+    background: #555;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.payment form input[type=checkbox] {
+    margin-top: 20px;
+    margin-right: 20px;
+}
