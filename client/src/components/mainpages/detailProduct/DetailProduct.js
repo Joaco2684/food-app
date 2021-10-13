@@ -11,11 +11,9 @@ function DetailProduct(props) {
     const [products] = state.productsAPI.products;
     const addCart = state.userAPI.addCart;
     const [detailProduct, setDetailProduct] = useState([]);
-    const [size, setSize] = useState('');
 
     const handleChangeInput = e => {
         const value = e.target.value;
-        setSize(value)
     }
 
     useEffect(() => {
@@ -39,28 +37,11 @@ function DetailProduct(props) {
                     </div>
                     <span>$ {detailProduct.price}</span>
                     <p>{detailProduct.description}</p>
-                    <p>{detailProduct.content}</p>
                     
-                    {
-                        detailProduct.size.length === 0 ? null
-                        : <div>
-                        <select name="size" value={size === '' ? detailProduct.size : size} onChange={handleChangeInput} >
-                            <option value="">Please select a size</option>
-                            {
-                                detailProduct.size.map(size => (
-                                    <option value={size._id} key={size._id}>
-                                        {size.value}
-                                    </option>
-                                ))
-                            }
-                        </select>
-                        </div>
-                    }
-
-                    
+                
 
                     <Link to="/cart" className="cart"
-                    onClick={() => addCart(detailProduct, size)}>
+                    onClick={() => addCart(detailProduct)}>
                         Buy Now
                     </Link>
                 </div>

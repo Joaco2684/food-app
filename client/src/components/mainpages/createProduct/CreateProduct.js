@@ -11,9 +11,7 @@ const initialState = {
     title: '',
     price: 0,
     description: '',
-    content: '',
     category: '',
-    size: [],
     _id: ''
 }
 
@@ -37,37 +35,10 @@ function CreateProduct() {
     const [onEdit, setOnEdit] = useState(false);
     const [callback, setCallback] = state.productsAPI.callback;
 
-    const [size, setSize] = useState({
-        sizes: [
-            { id: 1, value: "1", isChecked: false },
-            { id: 2, value: "2", isChecked: false },
-            { id: 3, value: "3", isChecked: false },
-            { id: 4, value: "4", isChecked: false },
-            { id: 5, value: "5", isChecked: false },
-            { id: 6, value: "6", isChecked: false },
-            { id: 7, value: "7", isChecked: false },
-            { id: 8, value: "XS", isChecked: false },
-            { id: 9, value: "S", isChecked: false },
-            { id: 10, value: "M", isChecked: false },
-            { id: 11, value: "L", isChecked: false },
-            { id: 12, value: "XL", isChecked: false },
-            { id: 13, value: "XXL", isChecked: false },
-            { id: 15, value: "40", isChecked: false },
-            { id: 16, value: "42", isChecked: false },
-            { id: 17, value: "44", isChecked: false },
-            { id: 18, value: "46", isChecked: false },
-            { id: 19, value: "48", isChecked: false },
-            { id: 20, value: "10", isChecked: false },
-            { id: 21, value: "12", isChecked: false },
-        ]
-    });
-
-    let finalSize = [];
 
 
 
     useEffect(() => {
-
 
 
         if (param.id) {
@@ -136,38 +107,19 @@ function CreateProduct() {
     }
 
 
-    const handleCheckChieldElement = (event) => {
-        let sizes = size.sizes;
-        sizes.forEach(size => {
-            if (size.value === event.target.value)
-                size.isChecked = event.target.checked
-        })
-        setSize({ sizes: sizes })
-
-
-    }
-
     const handleSubmit = async e => {
         e.preventDefault();
-
-        size.sizes.map((size, index) => {
-            if (size.isChecked === true) {
-                finalSize.push({ "id": size.id, "value": size.value, "isChecked": size.isChecked });
-            }
-        })
-
-        console.log(finalSize);
 
         try {
             if (!isAdmin) return alert.show("You´re not an admin");
             if (!images) return alert.show("No Image Upload");
 
             if (onEdit) {
-                await axios.put(`/api/products/${product._id}`, { ...product, images, size: finalSize }, {
+                await axios.put(`/api/products/${product._id}`, { ...product, images }, {
                     headers: { Authorization: token }
                 });
             } else {
-                await axios.post('/api/products', { ...product, images, size: finalSize }, {
+                await axios.post('/api/products', { ...product, images }, {
                     headers: { Authorization: token }
                 });
             }
@@ -229,12 +181,6 @@ function CreateProduct() {
                 </div>
 
                 <div className="row">
-                    <label htmlFor="content">Content</label>
-                    <textarea type="text" name="content" id="content" required
-                        value={product.content} rows="7" onChange={handleChangeInput} />
-                </div>
-
-                <div className="row">
                     <label htmlFor="categories">Categories: </label>
                     <select name="category" value={product.category} onChange={handleChangeInput} >
                         <option value="">Please select a category</option>
@@ -248,18 +194,6 @@ function CreateProduct() {
                     </select>
                 </div>
 
-                <div className="row">
-                <label htmlFor="sizes" >Sizes: </label>
-                    <div className="check">
-                        <ul>
-                            {
-                                size.sizes.map((size, index) => {
-                                    return (<CheckBox key={index} handleCheckChieldElement={handleCheckChieldElement}  {...size} />)
-                                })
-                            }
-                        </ul>
-                    </div>
-                </div>
 
                 <button type="submit">{onEdit ? "Update" : "Create"}</button>
             </form>

@@ -5,44 +5,44 @@ function Filters() {
 
     const state = useContext(GlobalState);
     const [categories] = state.categoriesAPI.categories;
+    const [isAdmin] = state.userAPI.isAdmin;
 
     const [category, setCategory] = state.productsAPI.category;
     const [sort, setSort] = state.productsAPI.sort;
     const [search, setSearch] = state.productsAPI.search;
 
-    const handleCategory = e => {
+    /* const handleCategory = e => {
         setCategory(e.target.value);
+        console.log(e.target.value);
+        setSearch('');
+    } */
+
+    function handleCategory(id) {
+        setCategory(id);
         setSearch('');
     }
 
     return (
         <div className="filter_menu">
-            <div className="row">
-                <span>Filters: </span>
-                <select name="category" value={category} onChange={handleCategory}>
-                    <option value=''>All Products</option>
-                    {
-                        categories.map(category => (
-                            <option value={"category=" + category._id} key={category._id}>
-                                {category.name}
-                            </option>
-                        ))
-                    }
-                </select>
-            </div>
-
-            <input type="text" value={search} placeholder="Enter your search!"
-                onChange={e => setSearch(e.target.value.toLowerCase())} />
 
             <div className="row sort">
-                <span>Sort By: </span>
-                <select value={sort} onChange={e => setSort(e.target.value)}>
-                    <option value=''>Newest</option>
-                    <option value='sort=oldest'>Oldest</option>
-                    <option value='sort=-price'>Price: Hight-Low</option>
-                    <option value='sort=price'>Price: Low-Hight</option>
-                    
-                </select>
+
+                <input type="text" value={search} placeholder="Enter your search!"
+                    onChange={e => setSearch(e.target.value.toLowerCase())} />
+
+
+                <div className="category">
+
+
+
+                    <button onClick={() => handleCategory("")}>All</button>
+                    {
+                        categories.map(category => (
+                            <button onClick={() => handleCategory(`category=${category._id}`)} key={category._id}>{category.name}</button>
+                        ))
+                    }
+
+                </div>
             </div>
         </div>
     );

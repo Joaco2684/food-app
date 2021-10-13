@@ -83,7 +83,6 @@ function Cart() {
 
                             <h3>$ {product.price * product.quantity}</h3>
                             <p>{product.description}</p>
-                            <p>Size: {product.size}</p>
 
                             <div className="amount">
                                 <button onClick={() => decrement(product._id)}> - </button>

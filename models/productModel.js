@@ -21,10 +21,6 @@ const productSchemma = new mongoose.Schema({
         type: String,
         required:true
     },
-    content: {
-        type: String,
-        required:true
-    },
     images: {
         type: Object,
         required:true
@@ -33,18 +29,11 @@ const productSchemma = new mongoose.Schema({
         type: String,
         required:true
     },
-    size: {
-        type: Array,
-        default: [],
-    },
     checked: {
         type: Boolean,
         default: false
     },
-    sold: {
-        type: Number,
-        default: 0
-    },
+
 }, { timestamp: true });
 
 module.exports = mongoose.model('Products', productSchemma)

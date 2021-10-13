@@ -14,13 +14,24 @@ code {
     monospace;
 }
 
+
+
 .App {
-  max-width: 1200px;;
+  max-width: 1200px;
   min-height: 100vh;
   margin: 0 auto;
   padding: 0 20px;
   box-shadow: 0 0 35px #eee;
+  background-color: rgb(255, 252, 248);
+    opacity: 0.95;
 }
+
+.background {
+  background-image: url("https://www.fmdos.cl/wp-content/uploads/2021/05/Dia-de-la-Hamburguesa.jpg");
+  margin: 0;
+  padding: 0;
+}
+
 
 a {
   text-decoration: none;
@@ -69,7 +80,7 @@ button {
     position: fixed;
     top: 0;
     left: -100%;
-    width: 100%;
+    width: 75%;
     height: 100vh;
     background: white;
     display: flex;

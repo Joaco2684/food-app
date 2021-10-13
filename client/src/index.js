@@ -16,9 +16,12 @@ const options = {
 
 ReactDOM.render(
   <AlertProvider template={AlertTemplate} {...options}>
-    <App />,
+    <div className="background">
+      <App />,
+    </div>
+
   </AlertProvider>,
-    
+
   document.getElementById('root')
 );
 
